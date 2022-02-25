@@ -1,11 +1,12 @@
 const BillingCycle = require('./billingCycle');
-
-//serviços webserver rest no noderestfull
+const errorHandler = require('../common/errorHandler')
+    //serviços webserver rest no noderestfull
 
 BillingCycle.methods(['get', 'put', 'post', 'delete']);
 // por padrao o 'put' nao tem as validacoes q passamos e nao atualiza o ultimo dado,
 // com isso abaixo estamos permitindo
 BillingCycle.updateOptions({ new: true, runValidators: true })
+BillingCycle.after('post', errorHandler).after('put', errorHandler)
 
 BillingCycle.route('get', (req, res, next) => {
     BillingCycle.find({}, (err, docs) => {
