@@ -5,7 +5,7 @@ import { showTabs, selectTab } from "../common/tab/TabActions";
 import billingCycleForm from "./billingCycleForm";
 
 const BASE_URL = 'http://localhost:3003/api';
-const INITIAL_VALUES = {};
+const INITIAL_VALUES = {credits: [{}], debts: [{}]};
 
 export function getList() {
     const request = axios.get(`${BASE_URL}/billingcycles`)
